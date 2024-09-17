@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #game {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        #status {
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="status">Choose difficulty: <button onclick="setDifficulty('easy')">Easy</button> <button onclick="setDifficulty('hard')">Hard</button></div>
+    <div id="game"></div>
+    <script>
+        let board = Array(9).fill(null);
+        let currentPlayer = 'X';
+        let aiDifficulty = 'easy';
+
+        const setDifficulty = (difficulty) => {
+            aiDifficulty = difficulty;
+            resetGame();
+        };
+
+        const resetGame = () => {
+            board = Array(9).fill(null);
+            currentPlayer = 'X';
+            document.querySelectorAll('.cell').forEach(cell => cell.textContent = '');
+            document.getElementById('status').textContent = `Player ${currentPlayer}'s turn`;
+        };
+
+        const checkWinner = (player) => {
+            const winningCombinations = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+            return winningCombinations.some(combination => 
+                combination.every(index => board[index] === player)
+            );
+        };
+
+        const isBoardFull = () => board.every(cell => cell !== null);
+
+        const makeMove = (index, player) => {
+            if (board[index] === null) {
+                board[index] = player;
+                document.querySelectorAll('.cell')[index].textContent = player;
+                if (checkWinner(player)) {
+                    setTimeout(() => alert(`Player ${player} wins!`), 10);
+                } else if (isBoardFull()) {
+                    setTimeout(() => alert("It's a tie!"), 10);
+                } else {
+                    currentPlayer = (player === 'X') ? 'O' : 'X';
+                    if (currentPlayer === 'O') aiMove();
+                }
+            }
+        };
+
+        const aiMove = () => {
+            let index;
+            if (aiDifficulty === 'easy') {
+                do {
+                    index = Math.floor(Math.random() * 9);
+                } while (board[index] !== null);
+            } else {
+                index = minimax(board, 'O').index;
+            }
+            makeMove(index, 'O');
+        };
+
+        const minimax = (board, player) => {
+            const otherPlayer = (player === 'X') ? 'O' : 'X';
+            if (checkWinner('X')) return { score: -10 };
+            if (checkWinner('O')) return { score: 10 };
+            if (isBoardFull()) return { score: 0 };
+
+            let bestMove;
+            let bestScore = (player === 'O') ? -Infinity : Infinity;
+
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === null) {
+                    board[i] = player;
+                    let score = minimax(board, otherPlayer).score;
+                    board[i] = null;
+                    if (player === 'O') {
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestMove = { index: i, score: bestScore };
+                        }
+                    } else {
+                        if (score < bestScore) {
+                            bestScore = score;
+                            bestMove = { index: i, score: bestScore };
+                        }
+                    }
+                }
+            }
+            return bestMove;
+        };
+
+        const initializeGame = () => {
+            const gameBoard = document.getElementById('game');
+            gameBoard.innerHTML = '';
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.addEventListener('click', () => makeMove(i, 'X'));
+                gameBoard.appendChild(cell);
+            }
+        };
+
+        initializeGame();
+    </script>
+</body>
+</html>
