@@ -1,11 +1,18 @@
 # Mighty Chicken Unblocked Games
 
-This project was the first website I've ever made. I began this project in late August 2024 with the project's aim being towards creating a school unblocked games website, however, it wasn't ever fully intended to be used, but rather a project to gain knowledge. The website can be accessed here: https://snoozyyxv.github.io/mightychickengames/
+This project marks the creation of my first-ever website. I embarked on this journey in late August 2024 intending to develop a school-friendly unblocked games website. Although it was not intended for actual use, the primary objective was to gain knowledge. You can access the website here: [Github](https://snoozyyxv.github.io/mightychickengames/) or [Vercel](https://mightychickengames.vercel.app/). 
+
 ## Lessons Learned
 
-_What did I learn while building this project?_
+**What did I learn while building this project?**
 
-I learned many things during this project. These include the basics and intermediate level of HTML, semantics, accessibility basics, forms, and basic CSS. I learned this all through the span of two weeks using Mimo Code, a mobile app aimed at new developers looking to learn a new hobby or to find a career in coding.
+Throughout this project, I acquired a wealth of knowledge. These included:
+- Basics and intermediate levels of HTML
+- Understanding of semantics and accessibility basics
+- Forms and basic CSS
+
+I learned all of this within a span of two weeks using Mimo Code, a mobile app tailored for new developers seeking to learn a new hobby or pursuing a career in coding.
+
 ## Acknowledgements
-
- - [Mimo Code (The mobile app I used to learn HTML and basic CSS)](https://www.mimo.org)
+The mobile app I learned from is linked below.
+- [Mimo Code](https://www.mimo.org)
