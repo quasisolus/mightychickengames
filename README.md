@@ -1,6 +1,6 @@
 # Mighty Chicken Unblocked Games
 
-This project marks the creation of my first-ever website. I embarked on this journey in late August 2024 intending to develop a school-friendly unblocked games website. Although it was not intended for actual use, the primary objective was to gain knowledge. You can access the website here: [Github](https://snoozyyxv.github.io/mightychickengames/) or [Vercel](https://mightychickengames.vercel.app/). 
+This project marks the creation of my first-ever website. I embarked on this journey in late August 2024 intending to develop a school-friendly unblocked games website. Although it was not intended for actual use, the primary objective was to gain knowledge. You can access the website here: https://mightychickengames.vercel.app/.
 
 ## Lessons Learned
 
